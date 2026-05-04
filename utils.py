@@ -1,14 +1,28 @@
-# utils.py
-from car import Car
+from bank_account import BankAccount
+from person import Person
 
-def create_car_from_input():
-    car_id = input("Enter car ID (e.g., CAR001):\n")
-    brand = input("Enter car brand:\n")
-    year = int(input("Enter car year:\n"))
-    color = input("Enter car color:\n")
-    mileage = float(input("Enter mileage:\n"))
-    return Car(car_id, brand, year, color, mileage)
+def person_data():
+    name = input("Enter the person's name:\n")
+    person = Person(name)
 
-def display_cars(car_dict):
-    for car in car_dict.values():
-        print(car)
+    while True:
+        account_number = int(input("Enter a 4-digit account number:\n"))
+        balance = float(input("Enter the initial balance:\n"))
+
+        account = BankAccount(account_number, balance)
+        person.add_account(account)
+
+        done = input("Are you done adding accounts? (yes/no):\n").lower()
+        if done == "yes":
+            break
+
+    return person
+
+
+def balance_summary(person_list):
+    for person in person_list:
+        total_balance = 0
+        for account in person.accounts:
+            total_balance += account.balance
+
+        print(f"{person.name} : {total_balance:.2f}")
