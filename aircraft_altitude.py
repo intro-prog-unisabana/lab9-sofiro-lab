@@ -7,13 +7,12 @@ def main():
     while True:
         command = input("Enter command (A for ascent, D for descent, X to exit):\n")
 
-        if command.upper() == "X":
+        if command.strip().upper() == "X":
             break
 
         parts = command.split()
 
         if len(parts) != 2:
-            print("Invalid command.")
             continue
 
         action, value = parts
@@ -23,10 +22,8 @@ def main():
             aircraft.ascend(feet)
         elif action.upper() == "D":
             aircraft.descend(feet)
-        else:
-            print("Invalid command.")
 
-    print(f"Final altitude: {aircraft.altitude} feet")
+    print(f"Final altitude: {aircraft.get_altitude()} feet")
 
 
 if __name__ == "__main__":
