@@ -5,11 +5,12 @@ def main():
     my_aircraft = Aircraft(model)
 
     while True:
+
         user_input = input("Enter command (A for ascent, D for descent, X to exit): ")
         
-        if user_input.upper() == 'X':
+        if user_input.strip().upper() == 'X':
             break
-        
+
         try:
             parts = user_input.split()
             command = parts[0].upper()
@@ -19,11 +20,9 @@ def main():
                 my_aircraft.ascent(feet)
             elif command == 'D':
                 my_aircraft.descent(feet)
-            else:
-                print("Invalid command. Use A, D, or X.")
-        
         except (IndexError, ValueError):
-            print("Invalid format. Please use 'A <feet>' or 'D <feet>'.")
+            pass
+
     print(f"Final altitude: {my_aircraft.altitude} feet")
 
 if __name__ == "__main__":
